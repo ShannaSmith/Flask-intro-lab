@@ -35,6 +35,25 @@ def say_hello():
         <h1>Hi There!</h1>
         <form action="/greet">
           What's your name? <input type="text" name="person">
+          Choose your AWESOMENESS:
+          <select name="awesomeness">
+          <option value='awesome' >awesome</option>
+          <option value='terrific'>terrific</option>
+            <option value='fantastic'>fantastic</option>
+            <option value='neato'>neato</option>
+            <option value='fantabulous'>fantabulous</option>
+            <option value='wowza'>wowza</option>
+            <option value='oh-so-not-meh'>oh-so-not-meh</option>
+            <option value='brilliant'>brilliant</option>
+            <option value='ducky'>ducky</option>
+            <option value='coolio'>coolio</option>
+            <option value='incredible'>incredibile</option>
+            <option value='wonderful'>wonderful</option>
+            <option value='smashing'>smashing</option>
+            <option value='lovely'>lovely</option>
+
+
+          </select>
           <input type="submit" value="Submit">
         </form>
       </body>
@@ -47,8 +66,9 @@ def greet_person():
     """Get user by name."""
 
     player = request.args.get("person")
-
-    compliment = choice(AWESOMENESS)
+    
+    # compliment = choice(AWESOMENESS)
+    compliment=request.args.get("awesomeness")
 
     return f"""
     <!doctype html>
@@ -66,4 +86,5 @@ def greet_person():
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads"
     # our web app if we change the code.
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=5001)
+ 
