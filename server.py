@@ -13,6 +13,12 @@ AWESOMENESS = [
     'oh-so-not-meh', 'brilliant', 'ducky', 'coolio', 'incredible',
     'wonderful', 'smashing', 'lovely']
 
+NEGATIVE = [
+      'pillock', 'lickspittle', 'smwllfungus', 'ninnyhammer', 'mumpsimus', 'pettifogger',
+      'mooncalf','picklepuss', 'stinker', 'stinkpot','lousy', 'rapscallion', 'scallywag',
+      'flibbertigibbet']
+
+
     
 @app.route('/')   
 def start_here():
@@ -51,10 +57,29 @@ def say_hello():
             <option value='wonderful'>wonderful</option>
             <option value='smashing'>smashing</option>
             <option value='lovely'>lovely</option>
-
-
           </select>
           <input type="submit" value="Submit">
+        </form>
+        <form action='/diss'>
+          What's your name? <input type="text" name="person">
+          Get insultedgit 
+           <select name="negative">
+          <option value='pillock' >pillock</option>
+          <option value='lickspittle'>lickspittle</option>
+            <option value='smwllfungus'>smwllfungus</option>
+            <option value='ninnyhammer'>ninnyhammer</option>
+            <option value='mumpsimus'>mumpsimus</option>
+            <option value='pettifogger'>pettifogger</option>
+            <option value='mooncalf'>mooncalf</option>
+            <option value='picklepuss'>picklepuss</option>
+            <option value='stinker'>stinker</option>
+            <option value='stinkpot'>stinkpot</option>
+            <option value='lousy'>lousy</option>
+            <option value='rapscallion'>rapscallion</option>
+            <option value='scallywag'>scallywag</option>
+            <option value='flibbertigibbet'>flibbertigibbet</option>
+          </select>
+          <input type="submit" value="Submit" name="negative">
         </form>
       </body>
     </html>
@@ -81,7 +106,22 @@ def greet_person():
       </body>
     </html>
     """
-
+@app.route('/diss')
+def diss_person():
+    player = request.args.get("person")
+    insult = request.args.get("negative")
+    return f"""
+    <!doctype html>
+    <html>
+      <head>
+        <title>A Diss</title>
+      </head>
+      <body>
+        Hi, {player}! I think you're {insult}!
+      </body>
+    </html>
+    """
+  
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads"
